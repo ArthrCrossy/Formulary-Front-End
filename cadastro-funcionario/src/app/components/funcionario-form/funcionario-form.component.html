@@ -1,0 +1,190 @@
+<!-- src/app/components/funcionario-form/funcionario-form.component.html -->
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+</head>
+<div class="container">
+  <div class="card">
+    <div class="form-header">
+      <h2 class="form-title">Cadastro de Funcionário</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="funcionarioForm" (ngSubmit)="onSubmit()">
+        <!-- Informações Pessoais -->
+        <div class="section-title">
+          <h3>INFORMAÇÕES PESSOAIS</h3>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nomeCompleto" class="custom-label custom-label--required">NOME COMPLETO</label>
+              <input
+                type="text"
+                id="nomeCompleto"
+                class="form-control custom-input"
+                formControlName="nomeCompleto"
+                [ngClass]="{'is-invalid': submitted && f['nomeCompleto'].errors}"
+                placeholder="Digite o nome completo"
+              >
+              <div class="invalid-feedback" *ngIf="submitted && f['nomeCompleto'].errors">
+                <div *ngIf="f['nomeCompleto'].errors['required']">Nome é obrigatório</div>
+                <div *ngIf="f['nomeCompleto'].errors['minlength']">Nome deve ter pelo menos 3 caracteres</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email" class="custom-label custom-label--required">EMAIL</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control custom-input"
+                formControlName="email"
+                [ngClass]="{'is-invalid': submitted && f['email'].errors}"
+                placeholder="exemplo@email.com"
+              >
+              <div class="invalid-feedback" *ngIf="submitted && f['email'].errors">
+                <div *ngIf="f['email'].errors['required']">Email é obrigatório</div>
+                <div *ngIf="f['email'].errors['email']">Email inválido</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="telefone" class="custom-label custom-label--required">TELEFONE</label>
+              <input
+                type="tel"
+                id="telefone"
+                class="form-control custom-input"
+                formControlName="telefone"
+                [ngClass]="{'is-invalid': submitted && f['telefone'].errors}"
+                placeholder="(00) 00000-0000"
+              >
+              <div class="invalid-feedback" *ngIf="submitted && f['telefone'].errors">
+                <div *ngIf="f['telefone'].errors['required']">Telefone é obrigatório</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informações Profissionais -->
+        <div class="section-title">
+          <h3>Informações Profissionais</h3>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="cargo" class="custom-label custom-label--required">CARGO</label>
+              <input
+                type="text"
+                id="cargo"
+                class="form-control custom-input"
+                formControlName="cargo"
+                [ngClass]="{'is-invalid': submitted && f['cargo'].errors}"
+                placeholder="Digite o cargo"
+              >
+              <div class="invalid-feedback" *ngIf="submitted && f['cargo'].errors">
+                <div *ngIf="f['cargo'].errors['required']">Cargo é obrigatório</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="departamento" class="custom-label custom-label--required">DEPARTAMENTO</label>
+              <select
+                id="departamento"
+                class="form-select custom-input"
+                formControlName="departamento"
+                [ngClass]="{'is-invalid': submitted && f['departamento'].errors}"
+              >
+                <option value="" disabled selected>Selecione um departamento</option>
+                <option *ngFor="let departamento of departamentos" [value]="departamento">
+                  {{ departamento }}
+                </option>
+              </select>
+              <div class="invalid-feedback" *ngIf="submitted && f['departamento'].errors">
+                <div *ngIf="f['departamento'].errors['required']">Departamento é obrigatório</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dataContratacao" class="custom-label custom-label--required">DATA DE CONTRATAÇÃO</label>
+              <input
+                type="date"
+                id="dataContratacao"
+                class="form-control custom-input"
+                formControlName="dataContratacao"
+                [ngClass]="{'is-invalid': submitted && f['dataContratacao'].errors}"
+              >
+              <div class="invalid-feedback" *ngIf="submitted && f['dataContratacao'].errors">
+                <div *ngIf="f['dataContratacao'].errors['required']">Data de contratação é obrigatória</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Salario" class="custom-label custom-label--required">SALÁRIO</label>
+              <input
+                type="number"
+                id="salario"
+                class="form-control custom-input"
+                formControlName="salario"
+                [ngClass]="{'is-invalid': submitted && f['salario'].errors}"
+                placeholder="0.00"
+                step="0.01"
+                min="0"
+              >
+              <div class="invalid-feedback" *ngIf="submitted && f['salario'].errors">
+                <div *ngIf="f['salario'].errors['required']">Salário é obrigatório</div>
+                <div *ngIf="f['salario'].errors['min']">Salário deve ser maior que zero</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                id="ativo"
+                class="form-check-input"
+                formControlName="ativo"
+              >
+              <label for="ativo" class="custom-label custom-label--required">ATIVO</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <button type="button" class="btn btn-secondary" (click)="onReset()">
+            <i class="bi bi-arrow-counterclockwise"></i> Limpar
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save"></i> Cadastrar
+          </button>
+        </div>
+
+        <!-- Mensagem de sucesso/erro -->
+        <div class="alert alert-success mt-3" *ngIf="mensagemSucesso">
+          {{ mensagemSucesso }}
+        </div>
+        <div class="alert alert-danger mt-3" *ngIf="mensagemErro">
+          {{ mensagemErro }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

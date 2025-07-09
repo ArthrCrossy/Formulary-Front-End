@@ -1,0 +1,249 @@
+/* src/app/components/funcionario-form/funcionario-form.component.scss */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  border-radius: 0.35rem;
+}
+
+.card-header {
+  background-color: #4e73df;
+  color: white;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e3e6f0;
+
+  h2 {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.section-title {
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #e3e6f0;
+  padding-bottom: 0.5rem;
+
+  h3 {
+    font-size: 1.1rem;
+    color: #5a5c69;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4e73df;
+  }
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.btn-primary {
+  background-color: #4e73df;
+  border-color: #4e73df;
+
+  &:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+  }
+}
+
+.btn-secondary {
+  background-color: #858796;
+  border-color: #858796;
+
+  &:hover {
+    background-color: #717384;
+    border-color: #6b6d7d;
+  }
+}
+
+
+.form-header {
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  padding: 1.5rem 2rem;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  color: white;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+// Este comentário indica que os estilos abaixo são aplicados a todos os elementos com a classe 'custom-input'
+.custom-input {
+  width: 90%;                  // Define que o input ocupará 100% da largura do elemento pai
+  padding: 12px 16px;           // Adiciona espaçamento interno de 12px vertical e 16px horizontal
+  border: 1px solid #ddd;       // Define uma borda de 1px sólida com cor cinza claro
+  border-radius: 6px;           // Arredonda os cantos com raio de 6px
+  font-size: 16px;              // Define o tamanho da fonte como 16px
+  color: #333;                  // Define a cor do texto como cinza escuro
+  transition: all 0.3s ease;    // Adiciona uma transição suave (0.3s) para todas as propriedades
+  outline: none;                // Remove o contorno padrão do navegador ao focar
+  margin-bottom: 15px;          // Adiciona margem inferior de 15px
+
+  // Estilos aplicados quando o input está em foco
+  &:focus {
+    border-color: #3498db;      // Muda a cor da borda para azul quando em foco
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); // Adiciona uma sombra azul clara ao redor do input
+  }
+
+  // Estilos aplicados ao placeholder do input
+  &::placeholder {
+    color: #999;                // Define a cor do texto do placeholder como cinza médio
+    font-style: italic;         // Aplica estilo itálico ao placeholder
+  }
+
+  // Estilos para inputs inválidos que já foram tocados (validação Angular)
+  &.ng-invalid.ng-touched {
+    border-color: #e74c3c;      // Muda a cor da borda para vermelho em caso de erro
+
+    // Estilos aplicados quando um input inválido está em foco
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2); // Adiciona sombra vermelha ao redor do input
+    }
+  }
+
+  // Estilos para inputs válidos que já foram tocados (validação Angular)
+  &.ng-valid.ng-touched {
+    border-color: #2ecc71;      // Muda a cor da borda para verde em caso de sucesso
+  }
+
+  // Estilos específicos para inputs de email
+  &--email {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>'); // Adiciona ícone de email como SVG inline
+    background-repeat: no-repeat; // Evita que o ícone se repita
+    background-position: right 10px center; // Posiciona o ícone à direita
+    padding-right: 40px;        // Aumenta o padding direito para dar espaço ao ícone
+  }
+
+  // Estilos específicos para inputs de senha
+  &--password {
+    letter-spacing: 2px;        // Aumenta o espaçamento entre caracteres
+    font-family: monospace;     // Usa fonte monoespaçada para maior segurança visual
+  }
+
+  // Estilos específicos para telas menores (responsividade)
+  @media (max-width: 768px) {
+    padding: 10px 14px;         // Reduz o padding em telas menores
+    font-size: 14px;            // Reduz o tamanho da fonte em telas menores
+  }
+}
+
+// Estilos específicos para elementos select personalizados
+.custom-select {
+  appearance: none;             // Remove a aparência padrão do select
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>'); // Adiciona ícone de seta como SVG inline
+  background-repeat: no-repeat; // Evita que o ícone se repita
+  background-position: right 10px center; // Posiciona o ícone à direita
+  padding-right: 40px;          // Aumenta o padding direito para dar espaço ao ícone
+}
+
+// Estilos para checkboxes personalizados
+.custom-checkbox {
+  appearance: none;             // Remove a aparência padrão do checkbox
+  width: 20px;                  // Define largura fixa
+  height: 20px;                 // Define altura fixa
+  border: 2px solid #ddd;       // Adiciona borda cinza
+  border-radius: 4px;           // Arredonda os cantos
+  position: relative;           // Permite posicionamento absoluto do pseudo-elemento
+  cursor: pointer;              // Muda o cursor para indicar interatividade
+
+  // Estilos aplicados quando o checkbox está marcado
+  &:checked {
+    background-color: #3498db;  // Muda o fundo para azul quando marcado
+    border-color: #3498db;      // Muda a borda para azul quando marcado
+
+    // Cria o símbolo de verificação usando um pseudo-elemento
+    &::after {
+      content: '';              // Necessário para criar o pseudo-elemento
+      position: absolute;       // Posicionamento absoluto dentro do checkbox
+      left: 6px;                // Posição horizontal do símbolo
+      top: 2px;                 // Posição vertical do símbolo
+      width: 6px;               // Largura do símbolo
+      height: 10px;             // Altura do símbolo
+      border: solid white;      // Borda branca para criar o símbolo
+      border-width: 0 2px 2px 0; // Bordas apenas à direita e embaixo
+      transform: rotate(45deg); // Rotaciona para formar o símbolo de verificação
+    }
+  }
+
+  // Estilos aplicados quando o checkbox está em foco
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); // Adiciona sombra azul ao redor do checkbox
+  }
+}
+
+// Estilos para o container de grupo de formulário
+.form-group {
+  margin-bottom: 20px;          // Adiciona espaço entre grupos de formulário
+
+  // Estilos para as labels dentro dos grupos de formulário
+  label {
+    display: block;             // Faz com que a label ocupe toda a largura disponível
+    margin-bottom: 8px;         // Adiciona espaço entre a label e o input
+    font-weight: 500;           // Define peso da fonte como semibold
+    color: #444;                // Define a cor do texto como cinza escuro
+  }
+}
+
+// Estilo base para todas as labels
+.custom-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #444;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: 'Crimson Pro', serif;
+
+
+  // Estilo para labels que são obrigatórias (com asterisco)
+  &--required {
+    position: relative;
+
+    // Opção 1: Estilizar o asterisco que já está no HTML
+    &::after {
+      content: ""; // O asterisco já está no HTML, então não precisamos adicionar com CSS
+      color: #e74c3c; // Cor vermelha para o asterisco
+      margin-left: 2px;
+    }
+  }
+
+  // Variação para departamentos específicos
+  &--department {
+    color: #3498db; // Cor azul para labels de departamento
+    font-weight: 600; // Deixar em negrito
+
+    // Adicionar um ícone antes do texto (opcional)
+    &::before {
+      content: "🏢 "; // Ícone de prédio (emoji)
+      // Ou use um SVG/imagem específica
+    }
+  }
+}
