@@ -166,7 +166,6 @@
             </div>
           </div>
         </div>
-
         <!-- Botões de ação -->
         <div class="d-flex justify-content-end gap-2 mt-4">
           <button type="button" class="btn btn-secondary" (click)="onReset()">
@@ -175,7 +174,18 @@
           <button type="submit" class="btn btn-primary">
             <i class="bi bi-save"></i> Cadastrar
           </button>
-        </div>
+          <button type="button" class="btn btn-primary" (click)="sendPDF()">
+            <i class="bi bi-save"></i> Enviar
+          </button>
+
+          <input
+            type="file"
+            id="documentoPDF"
+            hidden
+            accept="application/pdf"
+            (change)="onFileSelected($event)"
+            #fileInput
+          ></div>
 
         <!-- Mensagem de sucesso/erro -->
         <div class="alert alert-success mt-3" *ngIf="mensagemSucesso">
@@ -184,7 +194,50 @@
         <div class="alert alert-danger mt-3" *ngIf="mensagemErro">
           {{ mensagemErro }}
         </div>
+        <button type="button" class="btn btn-primary" (click)="sendPDF()"></button>
       </form>
     </div>
   </div>
+</div>
+<!-- Campo para seleção do arquivo PDF -->
+<div class="row mb-3">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="documentoPDF" class="custom-label">Documento (PDF)</label>
+      <input
+        type="file"
+        id="documentoPDF"
+        class="form-control custom-input"
+        accept="application/pdf"
+        (change)="onFileSelected($event)"
+      >
+      <small class="form-text text-muted">Apenas arquivos PDF (máximo 5MB)</small>
+    </div>
+  </div>
+</div>
+
+<!-- Informação do arquivo selecionado -->
+<div *ngIf="selectedFile" class="alert alert-info mt-2">
+  <i class="bi bi-file-earmark-pdf"></i>
+  Arquivo selecionado: {{ selectedFile.name }} ({{ (selectedFile.size / 1024).toFixed(2) }} KB)
+</div>
+
+<!-- Mensagens de feedback -->
+<div *ngIf="mensagemSucesso" class="alert alert-success mt-3">
+  {{ mensagemSucesso }}
+</div>
+<div *ngIf="mensagemErro" class="alert alert-danger mt-3">
+  {{ mensagemErro }}
+</div>
+
+<!-- Botões -->
+<div class="d-flex justify-content-end gap-2 mt-4">
+  <button type="button" class="btn btn-secondary" (click)="onReset()">
+    <i class="bi bi-arrow-counterclockwise"></i> Limpar
+  </button>
+  <button type="button" class="btn btn-primary" (click)="sendPDF()" [disabled]="carregando || !selectedFile">
+    <i class="bi bi-cloud-upload"></i>
+    <span *ngIf="!carregando">Cadastrar com Documento</span>
+    <span *ngIf="carregando">Enviando...</span>
+  </button>
 </div>
