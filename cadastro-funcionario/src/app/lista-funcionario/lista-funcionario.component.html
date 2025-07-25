@@ -1,0 +1,14 @@
+<p>lista-funcionario works!</p>
+<div class="container-lista">
+  <h2>Lista de Funcionários</h2>
+  <div *ngIf="carregando" class="loading">Carregando...</div>
+  <div *ngIf="erro" class="erro">{{ erro }}</div>
+  <ul *ngIf="!carregando && !erro">
+    <li *ngFor="let funcionario of funcionarios">
+      {{ funcionario.nome }}
+    </li>
+  </ul>
+  <button class="btn-azul" (click)="onBotaoClick()">
+    Clique aqui
+  </button>
+</div>

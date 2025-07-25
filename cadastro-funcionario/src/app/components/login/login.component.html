@@ -1,0 +1,88 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-title">Entrar no Sistema</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- Mensagens de erro ou sucesso -->
+      <div *ngIf="mensagemErro" class="alert alert-danger">
+        {{ mensagemErro }}
+      </div>
+      <div *ngIf="mensagemSucesso" class="alert alert-success">
+        {{ mensagemSucesso }}
+      </div>
+
+      <!-- Campo de Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && f['email'].errors}"
+          placeholder="seu@email.com"
+        >
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Email é obrigatório</div>
+          <div *ngIf="f['email'].errors['email']">Email deve ser um endereço válido</div>
+        </div>
+      </div>
+
+      <!-- Campo de Senha -->
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <div class="password-input-container">
+          <input
+            [type]="mostrarSenha ? 'text' : 'password'"
+            id="senha"
+            formControlName="senha"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && f['senha'].errors}"
+            placeholder="Digite sua senha"
+          >
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="toggleMostrarSenha()"
+            [attr.aria-label]="mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'"
+          >
+            <i class="fa" [ngClass]="mostrarSenha ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+        </div>
+        <div *ngIf="submitted && f['senha'].errors" class="invalid-feedback">
+          <div *ngIf="f['senha'].errors['required']">Senha é obrigatória</div>
+          <div *ngIf="f['senha'].errors['minlength']">Senha deve ter pelo menos 6 caracteres</div>
+        </div>
+      </div>
+
+      <!-- Checkbox Lembrar-me -->
+      <div class="form-group form-check">
+        <input
+          type="checkbox"
+          id="lembrar"
+          formControlName="lembrar"
+          class="form-check-input"
+        >
+        <label class="form-check-label" for="lembrar">Lembrar-me</label>
+      </div>
+      <div>OIIIIIIIIIIIIIIIIIIIIII</div>
+      <!-- Botões de Ação -->
+      <div class="form-group buttons">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="carregando"
+        >
+          <span *ngIf="carregando" class="spinner-border spinner-border-sm mr-1"></span>
+          Entrar
+        </button>
+        <a href="#" class="senha-link">Esqueci minha senha</a>
+      </div>
+
+      <!-- Link para cadastro -->
+      <div class="register-link">
+        Não tem uma conta? <a href="#">Cadastre-se</a>
+      </div>
+    </form>
+  </div>
+</div>
